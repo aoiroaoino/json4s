@@ -25,12 +25,12 @@ import org.specs2.matcher.MatchResult
 object JsonAstSpec extends Specification with JValueGen with ScalaCheck {
 
   ("JSON AST Specification") should {
-    "Functor identity" in {
+    "Functor-ish identity" in {
       val identityProp = (json: JValue) => json must_== (json map identity)
       prop(identityProp)
     }
 
-    "Functor composition" in {
+    "Functor-ish composition" in {
       val compositionProp = (json: JValue, fa: JValue => JValue, fb: JValue => JValue) =>
         json.map(fb).map(fa) must_== json.map(fa compose fb)
 
